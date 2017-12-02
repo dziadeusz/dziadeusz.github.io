@@ -7,7 +7,7 @@ In this blog post I'll present  a way of writting integration tests to prevent t
 
 The full source code used in this post is available on [GitHub](https://github.com/dziadeusz/n-plus-one-integration-testing).
 
-The test project builds upon a following entity model:
+I use the [Lombok](https://projectlombok.org/) library to reduce unnecessary biolerplate code. The import statements have been ommited for breviety. The test project builds upon a following entity model:
 {% gist dziadeusz/bf0c6cd1349f44ef48ac808c8fad605e %}
 
 The entity model is being mapped to following Data Transfer Objects eg. for the Web layer of the application.
