@@ -21,9 +21,9 @@ For the purpose of the test the same logic of fetching and mapping the structure
 The "getTreeWithSingleSelect" method delegates to a Spring Data JPA Repository by calling a HQL based method which fetches the whole Entity graph with "join fetch" clauses generating a single SQL SELECT statement. The Service layer method is not @Transactional so the mapping of Entities to Data Transfer Objects happens outside of a context of a running transaction. 
 
 On the other hand the "getTreeWithNplusOne" method calls a Repository method which only fetches the Tree without its branches collection marked as "LAZY", which is actually a proxy.
-```java
+{% highlited java %}
 @OneToMany(fetch = FetchType.LAZY, mappedBy = "tree")
-```
+{% endhighlight %}
 Then, while the PersistenceContext is still open, the lazy loaded branches collection is accessed, which produces another SELECT statement. Afterwards the branches collection is iterated over and the lazy loaded leafs collection of each branch is accessed, which produces n SELECT statements, one for each of the n branches.
 
 {% gist dziadeusz/a6ae0d67022916aaff09815fc7aad621 %}
