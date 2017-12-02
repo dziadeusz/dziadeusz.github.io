@@ -9,6 +9,6 @@ The full source code used in this post is available on [GitHub](https://github.c
 
 Test3
 
-{% gist parkr/c08ee0f2726fd0e3909d %}
+{% gist dziadeusz/n-plus-one-integration-testing/blob/master/src/main/java/io/github/dziadeusz/trees/domain/BaseEntity.java %}
 
 
