@@ -28,7 +28,7 @@ On the other hand the "getTreeWithNplusOne" method calls a Repository method whi
 @OneToMany(fetch = FetchType.LAZY, mappedBy = "tree")
 {% endhighlight %}
 Then, while the PersistenceContext is still open, the lazy loaded branches collection is accessed, which produces another SELECT statement. Afterwards the branches collection is iterated over and the lazy loaded leafs collection of each branch is accessed, which produces n SELECT statements, one for each of the n branches.
-## Wrapping the DataSOurce
+## The DataSource proxy
 To verify that the second method actually produces an N+1 problem, while the first method fetches all data using a single SELETCT, we can write an integration test using an in-memory H2 database. To intercept the actual SQL statements and verify them in the spec we need to register in the ApplicationContext a ProxyDataSource which wraps the actual DataSource and enables statement counting. Wrapping it again in a ProxyTestDataSource allows accessing the actual query execution objects in the specification. The @TestConfiguration class registers also our unit-under-test, the TreeFacade. The following test and its configuration are written in Groovy.
 
 {% gist dziadeusz/a6ae0d67022916aaff09815fc7aad621 %}
