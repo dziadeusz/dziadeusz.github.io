@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to prevent N+1 from creeping in with Spring Boot integration testing, Spock and a DataSource proxy
+title: How to prevent the infamous N+1 problem using Spring Boot integration testing, Spock and a DataSource proxy
 ---
 
 In this blog post I'll present  a way of writting integration tests to prevent the infamous N+1 problem from silently creeping into your project, when someone changes the underlying query and transactional configuration of your service layer. 
