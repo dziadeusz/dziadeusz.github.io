@@ -5,9 +5,11 @@ title: How to prevent the infamous N+1 problem using Spring Boot integration tes
 
 In this blog post I'll present  a way of writting integration tests to prevent the infamous N+1 problem from silently creeping into your project, when someone changes the underlying query and transactional configuration of your service layer. 
 
+This post has been inpired by [this post by Vlad Mihalcea, Java Champion](https://vladmihalcea.com/2014/02/01/how-to-detect-the-n-plus-one-query-problem-during-testing/) and his [excellent book High-Performance Java Persistence](https://www.amazon.com/High-Performance-Java-Persistence-Vlad-Mihalcea/dp/973022823X/ref=sr_1_1?ie=UTF8&qid=1512246851&sr=8-1&keywords=high+performance+java+persistence). I aim to adapt the idea to an application written with Spring Boot and Spring Data and tested in groovy by using Spock. I also use the [ttddyy datasource-assert](https://github.com/ttddyy/datasource-assert) which builds upon [ttddyy datasource-proxy](https://github.com/ttddyy/datasource-proxy). I use the [Lombok](https://projectlombok.org/) library to reduce unnecessary biolerplate code. The import statements have been omitted for breviety. 
+
 The full source code used in this post is available on [GitHub](https://github.com/dziadeusz/n-plus-one-integration-testing).
 
-I use the [Lombok](https://projectlombok.org/) library to reduce unnecessary biolerplate code. The import statements have been ommited for breviety. The test project builds upon a following entity model:
+The test project builds upon a following entity model:
 {% gist dziadeusz/bf0c6cd1349f44ef48ac808c8fad605e %}
 
 The entity model is being mapped to following Data Transfer Objects eg. for the Web layer of the application.
