@@ -22,6 +22,6 @@ On the other hand the "getTreeWithNplusOne" method calls a Repository method whi
 ```java
 @OneToMany(fetch = FetchType.LAZY, mappedBy = "tree")
 ```
-Then while the persistence context is still open, the lazy loaded branches collection is accessed, which produces another SELECT statement. Afterwards the branches collection is iterated over and the lazy loaded leafs collection is accessed, which produces n SELECT statements, one for n branches.
+Then, while the PersistenceContext is still open, the lazy loaded branches collection is accessed, which produces another SELECT statement. Afterwards the branches collection is iterated over and the lazy loaded leafs collection of each branch is accessed, which produces n SELECT statements, one for each of the n branches.
 
 {% dziadeusz/a6ae0d67022916aaff09815fc7aad621 %}
