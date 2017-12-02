@@ -14,7 +14,7 @@ Which is being mapped to following Data Transfer Objects eg. for the Web layer o
 {% gist dziadeusz/bf0c6cd1349f44ef48ac808c8fad605e %}
 
 For the purpose of the experiment the same logic of fetching and mapping the structure of a tree with its branches and leafs is implemented twice. 
-{% dziadeusz/0dab754353a22b518ccb58694522fffb %}
+{% gist dziadeusz/0dab754353a22b518ccb58694522fffb %}
 
 The "getTreeWithSingleSelect" method delegates to a Spring Data JPA Repository HQL based method which fetches the whole structure with "join fetch" clauses generating a single SQL SELECT statement. The Service layer method is not @Transactional so the mapping of Entity to Data Transfer Object happens outside of a context of any running transaction (Only the Repository method is implicitly transactional).
 
@@ -24,4 +24,4 @@ On the other hand the "getTreeWithNplusOne" method calls a Repository method whi
 ```
 Then, while the PersistenceContext is still open, the lazy loaded branches collection is accessed, which produces another SELECT statement. Afterwards the branches collection is iterated over and the lazy loaded leafs collection of each branch is accessed, which produces n SELECT statements, one for each of the n branches.
 
-{% dziadeusz/a6ae0d67022916aaff09815fc7aad621 %}
+{% gist dziadeusz/a6ae0d67022916aaff09815fc7aad621 %}
