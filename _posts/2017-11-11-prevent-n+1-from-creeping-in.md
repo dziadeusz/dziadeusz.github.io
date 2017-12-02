@@ -7,8 +7,8 @@ In this blog post I'll present ways to prevent the infamous N+1 problem from cre
 
 The full source code used in this post is available on [GitHub](https://github.com/dziadeusz/n-plus-one-integration-testing).
 
-Test4
+Test5
 
-{% gist dziadeusz/n-plus-one-integration-testing/blob/master/src/main/java/io/github/dziadeusz/trees/domain/BaseEntity.java %}
+{% github_sample /bwillis/versioncake/989237901cb873f96df12be48cbf1239be496bd7/Appraisals 0 5 %}
 
 
