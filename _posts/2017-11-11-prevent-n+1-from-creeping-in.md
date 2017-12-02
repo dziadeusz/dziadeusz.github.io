@@ -3,7 +3,7 @@ layout: post
 title: How to prevent the infamous N+1 problem using Spring Boot integration testing, Spock and a DataSource proxy
 ---
 
-*In this blog post I'll present  a way of writting integration tests to prevent the infamous N+1 problem from silently creeping into your project, when someone changes the underlying query and transactional configuration of your service layer.* 
+*In this post I'll present  a way of writting integration tests to prevent the infamous N+1 problem from silently creeping into your project, when someone changes the underlying query and transactional configuration of your service layer.* 
 
 ## Introduction
 This post has been inpired by [a post by Vlad Mihalcea, Java Champion](https://vladmihalcea.com/2014/02/01/how-to-detect-the-n-plus-one-query-problem-during-testing/) and his [excellent book High-Performance Java Persistence](https://www.amazon.com/High-Performance-Java-Persistence-Vlad-Mihalcea/dp/973022823X/ref=sr_1_1?ie=UTF8&qid=1512246851&sr=8-1&keywords=high+performance+java+persistence). I aim to adapt the idea to an application written with Spring Boot and Spring Data and tested in groovy by using Spock. I also use the [ttddyy datasource-assert](https://github.com/ttddyy/datasource-assert) which builds upon [ttddyy datasource-proxy](https://github.com/ttddyy/datasource-proxy). I use the [Lombok](https://projectlombok.org/) library to reduce unnecessary biolerplate code. The import statements have been omitted for breviety. 
@@ -44,4 +44,4 @@ The first feature method tests the "correct" method and verifies that even thoug
 The second feature method verifies, that while the entire Entity graph for the test Tree is being fetched, as many as twelve SELECT statements are produced underneath: apart from the first one, created by the TreeRepository findByName method to fetch the Tree, one additional query to fetch the LAZY laoded branches collection, and then ten more, one per each lazy loaded leafs collection in each Branch (10+1). In this case I use the QueryCountHolder from the datasource-proxy library to simply verify the count of SELECT statements. 
 
 ## Conclusion
-In fact you do not need such a test to verify, that the produced query is correct, you can just analyze the logs. But then, how can you be sure that no one introduces a regression in the future, maybe when adding another level domain object to the hierarchy? It is always best to automate any verification process, event though a HQL query may still "look correct".
+In fact you do not need such a test to verify, that the produced query is correct, you can just analyze the logs. But then, how can you be sure that no one introduces a regression in the future, maybe when adding another level to the Domain Model hierarchy? It is always best to automate any verification process, event though a HQL query may still "look correct".
