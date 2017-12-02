@@ -3,15 +3,15 @@ layout: post
 title: How to prevent N+1 from creeping in with Spring Boot integration testing, Spock and a DataSource proxy
 ---
 
-In this blog post I'll present ways to prevent the infamous N+1 problem from creeping into your project silently, when someone changes the underlying query and transactional configuration of your service layer. 
+In this blog post I'll present  a way of writting integration tests to prevent the infamous N+1 problem from silently creeping into your project, when someone changes the underlying query and transactional configuration of your service layer. 
 
 The full source code used in this post is available on [GitHub](https://github.com/dziadeusz/n-plus-one-integration-testing).
 
 The test project builds upon a following entity model:
 {% gist dziadeusz/bf0c6cd1349f44ef48ac808c8fad605e %}
 
-Which is being mapped to following Data Transfer Objects eg. for the Web layer of the application.
-{% gist dziadeusz/bf0c6cd1349f44ef48ac808c8fad605e %}
+The entity model is being mapped to following Data Transfer Objects eg. for the Web layer of the application.
+{% gist dziadeusz/ad6e74a94925b8078c046c45e03af9aa %}
 
 For the purpose of the experiment the same logic of fetching and mapping the structure of a tree with its branches and leafs is implemented twice. 
 {% gist dziadeusz/0dab754353a22b518ccb58694522fffb %}
